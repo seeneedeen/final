@@ -1,20 +1,30 @@
 import axios from 'axios';
+import FacebookLogin from "react-facebook-login"
 import './App.css';
 
 function App() {
 
-  async function callAPI(){
-    let api = await axios.post("http://localhost:8080",{
-      "msg" : "hello"
-    })
-    console.log(api.data)
-
+  const responseFacebook = async (response) => {
+    if(response.accessToken)
+    {
+      console.log('Access token: ' + response.accessToken)
+      // let result = await axios.post('http://localhost:8080/api/login', {
+      //   token: response.accessToken
+      // })
+      // console.log(result.data)
+      // sessionStorage.setItem('access_token', result.data.access_token)
+    }
   }
+  
 
   return (
     <div className="App">
-      <h1>THIS IS CLIENT TO CALL APT</h1>
-      <button onClick={callAPI}>Call APT</button>
+      <FacebookLogin
+        appId = "1075683823003347"
+        autoLoad = {true}
+        callback = {responseFacebook}
+      />
+
     </div>
   );
 }

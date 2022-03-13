@@ -6,8 +6,15 @@ const dotenv = require('dotenv')
 
 const app = express()
 
+//import module
+const user = require('./routes/LoginFacebook')
+
+//middleware
 app.use(bodyParser.json())
 app.use(cors())
+
+//router middleware
+app.use('/login',user)
 
 app.get('/',(req,res)=>{
     res.send("Welcome to server page!!!!!!!!")

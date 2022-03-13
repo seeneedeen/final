@@ -10,7 +10,6 @@ function App() {
       let result = await axios.post('http://localhost:8080/login', {
         token: response.accessToken
       })
-      console.log(result.data)
       sessionStorage.setItem('access_token', result.data.access_token)
     }
   }

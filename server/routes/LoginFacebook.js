@@ -4,7 +4,7 @@ const axios = require('axios')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 
-const user = require('../models/user')
+const User = require('../models/user')
 
 dotenv.config();
 
@@ -25,7 +25,17 @@ router.post('/', bodyParser.json(), async (req, res) => {
         process.env.TOKEN_SECRET, 
         {expiresIn: '1800s'}
     )
-    res.send({access_token})
+    const user = new User({
+        name: result.data.name,
+        email: result.data.email,
+        picture: result.data.picture.data.url
+    })
+    try{
+        const saveUser = await user.save()
+        res.send({access_token, register: result})
+    }catch(err){
+        res.send(err)
+    }
 })
 
 

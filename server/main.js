@@ -1,6 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const mongoose = require('mongoose')
+const dotenv = require('dotenv')
 
 const app = express()
 
@@ -11,12 +13,11 @@ app.get('/',(req,res)=>{
     res.send("Welcome to server page!!!!!!!!")
 })
 
-app.post('/',(req,res)=>{
-    if(req.body.msg)
-        res.send({msg:"hello"})
-    else
-        res.sendStatus(400).send({msg:"error"})
-})
+dotenv.config();
+mongoose.connect(
+    process.env.DB_CONNECT,
+    ()=> console.log('completed connect to DB')
+)
 
 app.listen(8080,()=>{
     console.log('Hello server')

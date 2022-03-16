@@ -4,7 +4,7 @@ import UserFB from './components/UserFB';
 function App() {
 
   return (
-    <div className="App">
+    <div className="mainApp">
       <UserFB />
     </div>
   );

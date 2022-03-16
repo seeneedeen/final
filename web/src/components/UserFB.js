@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React,{useState} from 'react';
 import FacebookLogin from "react-facebook-login"
+import './UserFB.css';
 
 
 function UserFB(){
@@ -29,30 +30,31 @@ function UserFB(){
   if(profile.status){
     loginBtn = (<></>)
     showProfile = (
-      <>
-        <h1>{profile.name}</h1>
-        <img src={profile.picture} alt="Logo" />
-      </>
+      <div>
+        <div className="nameFB">
+          <h1>{profile.name}</h1>
+        </div>
+        <div className="profileImg">
+          <img src={profile.picture} alt="Logo"/>
+        </div>
+      </div>
     )
   }else{
     loginBtn = (
       <FacebookLogin
         appId = "1075683823003347"
         autoLoad = {true}
+        cssClass= "btnFacebook"
         callback = {responseFacebook}
       />
     )
-    showProfile = (
-      <>
-        <h1>Please Login</h1>
-      </>
-    )
+    showProfile = (<></>)
   }
   return(
-    <>
-      <div>{loginBtn}</div>
-      <div>{showProfile}</div>
-    </>
+    <div className="facebook-user">
+      {loginBtn}
+      {showProfile}
+    </div>
   )
 
 }

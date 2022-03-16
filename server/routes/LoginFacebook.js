@@ -12,7 +12,7 @@ router.post('/', bodyParser.json(), async (req, res) => {
     let token = req.body.token
     let result = await axios.get('https://graph.facebook.com/me', {
         params: {
-            fields: 'id,name,email,picture',
+            fields: 'id,name,email,picture.width(200).height(200)',
             access_token: token
         }
     })
@@ -20,7 +20,7 @@ router.post('/', bodyParser.json(), async (req, res) => {
         res.sendStatus(403)
         return
     }
-    let data = { username: result.data.email }
+    let data = { username: result.data.id }
     let access_token = jwt.sign(data, 
         process.env.TOKEN_SECRET, 
         {expiresIn: '1800s'}
@@ -32,7 +32,7 @@ router.post('/', bodyParser.json(), async (req, res) => {
     })
     try{
         const saveUser = await user.save()
-        res.send({access_token, register: result})
+        res.send({access_token,result:result.data})
     }catch(err){
         res.send(err)
     }

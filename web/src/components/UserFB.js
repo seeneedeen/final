@@ -1,11 +1,12 @@
 import axios from 'axios'
-import React,{useState} from 'react';
+import React,{useState , useEffect} from 'react';
 import FacebookLogin from "react-facebook-login"
 import './UserFB.css';
 
 
-function UserFB(){
+function UserFB(props){
   let loginBtn,showProfile;
+  const setLogedin = props.logedin
   
   const [profile,setPicfile] = useState({
     name : "",
@@ -24,6 +25,7 @@ function UserFB(){
         picture:result.data.result.picture.data.url,
         status:true
       })
+      setLogedin(true)
     }
   }
 
@@ -50,6 +52,7 @@ function UserFB(){
     )
     showProfile = (<></>)
   }
+
   return(
     <div className="facebook-user">
       {loginBtn}

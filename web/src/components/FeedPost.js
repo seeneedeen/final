@@ -17,10 +17,14 @@ function FeedPost(){
         name: "sdasd",
         msg: ";skldf;sdjf;wsdfj;s"
     }])
-
+    const newPostMsg = (newItem)=>{
+        setPost((prevItem)=>{
+          return [newItem,...prevItem]
+        })
+    }
     return(
         <div>
-            <NewPost/>
+            <NewPost setPost={newPostMsg}/>
             <ul className="item-list">
             {post.map((element)=>{
                 return <Post {...element} key={element.id}/>

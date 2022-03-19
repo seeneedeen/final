@@ -32,7 +32,7 @@ function UserFB(props){
   if(profile.status){
     loginBtn = (<></>)
     showProfile = (
-      <div>
+      <div className='profile'>
         <div className="nameFB">
           <h1>{profile.name}</h1>
         </div>
@@ -55,8 +55,8 @@ function UserFB(props){
 
   return(
     <div className="facebook-user">
-      {loginBtn}
-      {showProfile}
+      <div>{loginBtn}</div>
+      <div>{showProfile}</div>
     </div>
   )
 

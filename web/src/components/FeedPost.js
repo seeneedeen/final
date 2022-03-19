@@ -1,5 +1,6 @@
 import Post from "./Post";
 import React,{useState} from "react";
+import NewPost from './NewPost';
 
 function FeedPost(){
     const [post,setPost] = useState([{
@@ -13,16 +14,19 @@ function FeedPost(){
         msg: ";skldf;sdjf;wsdfj;s"
     },{
         id: 3,
-        name: "ksdfjsd",
+        name: "sdasd",
         msg: ";skldf;sdjf;wsdfj;s"
     }])
 
     return(
-        <ul className="item-list">
-          {post.map((element)=>{
-              return <Post {...element} key={element.id}/>
-          })}
-        </ul>
+        <div>
+            <NewPost/>
+            <ul className="item-list">
+            {post.map((element)=>{
+                return <Post {...element} key={element.id}/>
+            })}
+            </ul>
+        </div>
     );
 }
 

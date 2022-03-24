@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios'
 import './NewPost.css'
 function NewPost(props){
     const [msg,setMsg] = useState("")
@@ -9,14 +9,11 @@ function NewPost(props){
         setMsg(e.target.value)
     }
 
-    const PostNewMSG = (e)=>{
+    const PostNewMSG = async (e)=>{
         e.preventDefault()
-        const itemData = {
-            id:uuidv4(),
-            name:"title",
+        let result = await axios.post('http://localhost:8080/api/create',{
             msg:msg
-        }
-        props.newPostMsg(itemData)
+        })
         setMsg('')
     }
 

@@ -15,19 +15,10 @@ function App() {
     return Promise.reject(err)
   })
 
-  const callInfoAPI = async () => {
-    let result = await axios.get('http://localhost:8080/verify')
-    console.log(result.data)
-  }
-  
-    
   return (
     <div className="mainApp">
       <UserFB logedin={setLogedin}/>
       {logedin ? <FeedPost/>:<></>}
-      <div>
-        <button onClick={callInfoAPI}>TEST verifly</button>
-      </div>
     </div>
   );
 }

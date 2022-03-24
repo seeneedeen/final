@@ -7,7 +7,6 @@ function verifyToken(req,res,next){
         return res.sendStatus(401)
     jwt.verify(token, process.env.TOKEN_SECRET, (err, info) => {
         if(!token) return res.sendStatus(403)
-        console.log(info.username)
         req.username = info.username
         next()
     })

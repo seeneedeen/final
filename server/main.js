@@ -10,18 +10,15 @@ const app = express()
 
 //import module
 const User = require('./routes/LoginFacebook')
+const Post = require('./routes/Post')
 
 //middleware
 app.use(bodyParser.json())
 app.use(cors())
-const verify = require('./models/verifyToken')
 
 //router middleware
 app.use('/login',User)
-
-app.get('/verify',verify,(req,res)=>{
-    res.send(req.body.username)
-})
+app.use('/api',Post)
 
 app.get('/',(req,res)=>{
     res.send("Welcome to server page!!!")

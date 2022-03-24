@@ -4,14 +4,9 @@ import NewPost from './NewPost';
 
 function FeedPost(){
     const [post,setPost] = useState([])
-    const newPostMsg = (newItem)=>{
-        setPost((prevItem)=>{
-          return [newItem,...prevItem]
-        })
-    }
     return(
         <div>
-            <NewPost newPostMsg={newPostMsg}/>
+            <NewPost/>
             <ul className="item-list">
             {post.map((element)=>{
                 return <Post {...element} key={element.id}/>

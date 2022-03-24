@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 import './NewPost.css'
 function NewPost(props){
     const [msg,setMsg] = useState("")
@@ -11,7 +12,7 @@ function NewPost(props){
     const PostNewMSG = (e)=>{
         e.preventDefault()
         const itemData = {
-            id:1,
+            id:uuidv4(),
             name:"title",
             msg:msg
         }

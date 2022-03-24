@@ -7,14 +7,6 @@ import axios from 'axios';
 function App() {
   const [logedin,setLogedin] = useState(false)
 
-  axios.interceptors.request.use(function(config){
-    const token = sessionStorage.getItem('access_token')
-    config.headers['Authorization'] = `Bearer ${token}`
-    return config
-  }, function(err){
-    return Promise.reject(err)
-  })
-
   return (
     <div className="mainApp">
       <UserFB logedin={setLogedin}/>

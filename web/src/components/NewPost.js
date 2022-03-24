@@ -1,9 +1,16 @@
-import { useEffect, useState } from 'react'
+import {useState } from 'react'
 import axios from 'axios'
 import './NewPost.css'
 function NewPost(props){
     const [msg,setMsg] = useState("")
 
+    axios.interceptors.request.use(function(config){
+        const token = sessionStorage.getItem('access_token')
+        config.headers['Authorization'] = `Bearer ${token}`
+        return config
+    }, function(err){
+        return Promise.reject(err)
+    })
 
     const inputTitle = (e)=>{
         setMsg(e.target.value)
@@ -11,9 +18,14 @@ function NewPost(props){
 
     const PostNewMSG = async (e)=>{
         e.preventDefault()
-        let result = await axios.post('http://localhost:8080/api/create',{
-            msg:msg
-        })
+        if( msg != ""){
+            await axios.post('http://localhost:8080/api/create',{
+                msg:msg
+            })
+            props.addNewPost()
+        }
+        else
+            alert("Please Type Somethinh")
         setMsg('')
     }
 

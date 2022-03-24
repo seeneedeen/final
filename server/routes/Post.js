@@ -17,5 +17,14 @@ router.post('/create',verify,async (req,res)=>{
     }
 })
 
+router.get('/allPost', async (req,res)=>{
+    try{
+        const result = await Post.find()
+        res.json(result)
+    }catch(err){
+        res.json({msg : err})
+    }
+})
+
 
 module.exports = router;

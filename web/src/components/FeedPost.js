@@ -1,15 +1,26 @@
 import Post from "./Post";
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
+import axios from 'axios'
 import NewPost from './NewPost';
 
 function FeedPost(){
     const [post,setPost] = useState([])
+
+    const addNewPost = async()=>{
+        const allPost = await axios.get('http://localhost:8080/api/allPost')
+        setPost(allPost.data)
+    }
+
+    useEffect(() => {
+        addNewPost();
+      }, []);
+
     return(
         <div>
-            <NewPost/>
+            <NewPost addNewPost={addNewPost}/>
             <ul className="item-list">
             {post.map((element)=>{
-                return <Post {...element} key={element.id}/>
+                return <Post {...element} key={element._id}/>
             })}
             </ul>
         </div>

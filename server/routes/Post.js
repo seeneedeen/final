@@ -13,7 +13,7 @@ router.post('/create',verify,async (req,res)=>{
         const result = await post.save()
         res.json(result)
     }catch(err){
-        res.json({msg: err})
+        res.json({err: err})
     }
 })
 
@@ -22,7 +22,7 @@ router.get('/allPost', async (req,res)=>{
         const result = await Post.find()
         res.json(result)
     }catch(err){
-        res.json({msg : err})
+        res.json({err : err})
     }
 })
 

@@ -18,7 +18,7 @@ function NewPost(props){
 
     const PostNewMSG = async (e)=>{
         e.preventDefault()
-        if( msg != ""){
+        if( msg !== ""){
             await axios.post('http://localhost:8080/api/create',{
                 msg:msg
             })

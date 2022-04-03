@@ -5,10 +5,10 @@ import { useState } from 'react';
 
 function App() {
   const [logedin,setLogedin] = useState(false)
-
+  
   return (
     <div className="mainApp">
-      <UserFB logedin={setLogedin}/>
+      <UserFB logedin={logedin} setLogedin={setLogedin} />
       {logedin ? <FeedPost/>:<></>}
     </div>
   );

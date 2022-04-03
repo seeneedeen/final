@@ -34,11 +34,11 @@ function NewPost(props){
         <form onSubmit={PostNewMSG}>
             <div className="form-control">
                 <label>Post Something</label>
-                <input type="text" placeholder="ระบุชื่อรายการของคุณ" onChange={inputTitle} value={msg}/>
+                <input type="text" placeholder="Your new post" onChange={inputTitle} value={msg}/>
             </div>
             <div>
-                <button type="submit" className="btn">เพิ่มข้อมูล</button>
-        </div>
+                <button type="submit" className="btn">Post</button>
+            </div>
         </form>
     );
 }

@@ -2,12 +2,12 @@ import Post from "./Post";
 import React,{useState,useEffect} from "react";
 import axios from 'axios'
 import NewPost from './NewPost';
-
+import config from '../config'
 function FeedPost(){
     const [post,setPost] = useState([])
 
     const addNewPost = async()=>{
-        const allPost = await axios.get('http://localhost:8080/api/allPost')
+        const allPost = await axios.get(`${config.apiUrlPrefix}/allPost`)
         setPost(allPost.data)
     }
 

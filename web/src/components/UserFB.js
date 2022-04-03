@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React,{useState} from 'react';
 import FacebookLogin from "react-facebook-login"
+import config from '../config';
 import './UserFB.css';
 
 
@@ -16,7 +17,8 @@ function UserFB(props){
 
   const responseFacebook = async (response) => {
     if(response.accessToken){
-      let result = await axios.post('http://localhost:8080/login', {
+      console.log(response.accessToken)
+      let result = await axios.post(`${config.loginUrlPrefix}`, {
         token: response.accessToken
       })
       sessionStorage.setItem('access_token', result.data.access_token)

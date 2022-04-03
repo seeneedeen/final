@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
-
+const logger = require('../log/logfile')
 dotenv.config();
 
 router.post('/', bodyParser.json(), async (req, res) => {
@@ -15,6 +15,7 @@ router.post('/', bodyParser.json(), async (req, res) => {
         }
     })
     if(!result.data.id){
+        logger.book.log('error',result.data.name + 'error 403');
         res.sendStatus(403)
         return
     }
@@ -24,6 +25,7 @@ router.post('/', bodyParser.json(), async (req, res) => {
         {expiresIn: '1800s'}
     )
     try{
+        logger.book.log('info',result.data.name + 'login success');
         res.send({access_token,result:result.data})
     }catch(err){
         res.send(err)

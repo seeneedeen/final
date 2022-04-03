@@ -1,6 +1,7 @@
 import {useState } from 'react'
 import axios from 'axios'
 import './NewPost.css'
+import config from '../config'
 function NewPost(props){
     const [msg,setMsg] = useState("")
 
@@ -19,13 +20,13 @@ function NewPost(props){
     const PostNewMSG = async (e)=>{
         e.preventDefault()
         if( msg !== ""){
-            await axios.post('http://localhost:8080/api/create',{
+            await axios.post(`${config.apiUrlPrefix}/create`,{
                 msg:msg
             })
             props.addNewPost()
         }
         else
-            alert("Please Type Somethinh")
+            alert("Please Type Something")
         setMsg('')
     }
 
